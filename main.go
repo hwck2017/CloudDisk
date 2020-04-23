@@ -1,7 +1,7 @@
 package main
 
 import (
-	"filestore-server/handler"
+	"CloudDisk/handler"
 	"net/http"
 )
 

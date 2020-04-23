@@ -1,9 +1,9 @@
 package handler
 
 import (
+	"CloudDisk/meta"
+	"CloudDisk/util"
 	"encoding/json"
-	"filestore-server/meta"
-	"filestore-server/util"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -55,7 +55,8 @@ func UploadHandler(w http.ResponseWriter, r *http.Request) {
 		dst.Seek(0, 0)
 		fmeta.Sha1 = util.FileSha1(dst)
 		fmt.Println(fmeta.Sha1)
-		meta.Set(fmeta)
+		// meta.Set(fmeta)
+		_ = meta.SetToDB(fmeta)
 		http.Redirect(w, r, "/file/upload/success", http.StatusFound)
 	}
 }

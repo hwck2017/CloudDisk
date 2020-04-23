@@ -1,5 +1,7 @@
 package meta
 
+import "CloudDisk/db"
+
 //FileMeta file meta data
 type FileMeta struct {
 	Sha1     string
@@ -18,6 +20,11 @@ func init() {
 //Set set or update filemetas
 func Set(meta FileMeta) {
 	fileMetas[meta.Sha1] = meta
+}
+
+//SetToDB set or update filemeta to mysql
+func SetToDB(meta FileMeta) bool {
+	return db.InsertIntoDB(meta.Sha1, meta.Name, meta.Path, meta.Size)
 }
 
 //Get get filemeta from sha1
